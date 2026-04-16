@@ -1,56 +1,30 @@
-import { Clock } from 'lucide-react'
+import { ClockIcon } from '@heroicons/react/24/outline'
 
 interface PendingApprovalProps {
-  /** Called when user clicks "Back to sign in" */
   onGoToSignIn?: () => void
 }
 
 export function PendingApproval({ onGoToSignIn }: PendingApprovalProps) {
   return (
-    <div
-      className="min-h-screen flex flex-col items-center justify-center px-4"
-      style={{ backgroundColor: '#0a0a0a' }}
-    >
-      <div className="w-full max-w-[420px]">
-        {/* Product mark */}
-        <p
-          className="text-center text-sm font-semibold tracking-tight mb-8"
-          style={{ color: '#fafafa', fontFamily: "'Inter', system-ui, sans-serif" }}
-        >
-          Ultimate Hiring Process
-        </p>
+    <div className="flex min-h-screen flex-col justify-center bg-[#0a0a0a] py-12 sm:px-6 lg:px-8">
+      <div className="sm:mx-auto sm:w-full sm:max-w-md">
+        <img
+          alt="Ultimate Hiring Process"
+          src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=yellow&shade=400"
+          className="mx-auto h-10 w-auto"
+        />
+        <h2 className="mt-6 text-center text-2xl/9 font-bold tracking-tight text-white">Account pending approval</h2>
+      </div>
 
-        {/* Card */}
-        <div
-          className="rounded-[0.4rem] p-8 text-center"
-          style={{ backgroundColor: '#171717', border: '1px solid #404040' }}
-        >
-          <Clock
-            className="mx-auto mb-5"
-            size={48}
-            strokeWidth={1.5}
-            style={{ color: '#a3a3a3' }}
-          />
-
-          <h1
-            className="text-2xl font-semibold mb-3"
-            style={{ color: '#fafafa', fontFamily: "'Inter', system-ui, sans-serif" }}
-          >
-            Account pending approval
-          </h1>
-
-          <p
-            className="text-base mb-6"
-            style={{ color: '#fafafa', fontFamily: "'Inter', system-ui, sans-serif" }}
-          >
-            Your email is verified. A UPA admin will approve you shortly.
-            You'll get an email once your account is active.
+      <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]">
+        <div className="bg-[#171717]/80 px-6 py-12 text-center outline -outline-offset-1 outline-white/10 sm:rounded-lg sm:px-12">
+          <ClockIcon className="mx-auto size-12 text-gray-400" />
+          <p className="mt-6 text-sm/6 text-white">
+            Your email is verified. A UPA admin will approve you shortly. You'll get an email once your account is active.
           </p>
-
           <button
             onClick={onGoToSignIn}
-            className="text-sm transition-colors hover:underline"
-            style={{ color: '#fafafa', fontFamily: "'Inter', system-ui, sans-serif" }}
+            className="mt-6 text-sm/6 font-semibold text-[#ffcd05] hover:text-[#e6b800]"
           >
             Back to sign in
           </button>

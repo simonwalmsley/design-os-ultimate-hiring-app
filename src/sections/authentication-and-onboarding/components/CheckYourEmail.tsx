@@ -1,10 +1,9 @@
 import { useState } from 'react'
-import { Mail } from 'lucide-react'
-import type { AuthenticationProps } from '@/../product/sections/authentication-and-onboarding/types'
+import { EnvelopeIcon } from '@heroicons/react/24/outline'
 
-interface CheckYourEmailProps extends AuthenticationProps {
-  /** The email address to display */
+interface CheckYourEmailProps {
   email: string
+  onResendEmail?: () => void
 }
 
 export function CheckYourEmail({ email, onResendEmail }: CheckYourEmailProps) {
@@ -17,65 +16,32 @@ export function CheckYourEmail({ email, onResendEmail }: CheckYourEmailProps) {
   }
 
   return (
-    <div
-      className="min-h-screen flex flex-col items-center justify-center px-4 relative"
-      style={{ backgroundColor: '#0a0a0a' }}
-    >
-      {/* Toast */}
+    <div className="flex min-h-screen flex-col justify-center bg-[#0a0a0a] py-12 sm:px-6 lg:px-8">
       {showToast && (
-        <div
-          className="fixed top-4 right-4 rounded-[0.4rem] px-4 py-3 text-sm shadow-lg z-50"
-          style={{
-            backgroundColor: '#171717',
-            border: '1px solid #404040',
-            color: '#fafafa',
-            fontFamily: "'Inter', system-ui, sans-serif",
-          }}
-        >
+        <div className="fixed top-4 right-4 z-50 rounded-md bg-gray-800 px-4 py-3 text-sm text-white shadow-lg outline -outline-offset-1 outline-white/10">
           Verification email resent.
         </div>
       )}
 
-      <div className="w-full max-w-[420px]">
-        {/* Product mark */}
-        <p
-          className="text-center text-sm font-semibold tracking-tight mb-8"
-          style={{ color: '#fafafa', fontFamily: "'Inter', system-ui, sans-serif" }}
-        >
-          Ultimate Hiring Process
-        </p>
+      <div className="sm:mx-auto sm:w-full sm:max-w-md">
+        <img
+          alt="Ultimate Hiring Process"
+          src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=yellow&shade=400"
+          className="mx-auto h-10 w-auto"
+        />
+        <h2 className="mt-6 text-center text-2xl/9 font-bold tracking-tight text-white">Check your email</h2>
+      </div>
 
-        {/* Card */}
-        <div
-          className="rounded-[0.4rem] p-8 text-center"
-          style={{ backgroundColor: '#171717', border: '1px solid #404040' }}
-        >
-          <Mail
-            className="mx-auto mb-5"
-            size={48}
-            strokeWidth={1.5}
-            style={{ color: '#a3a3a3' }}
-          />
-
-          <h1
-            className="text-2xl font-semibold mb-3"
-            style={{ color: '#fafafa', fontFamily: "'Inter', system-ui, sans-serif" }}
-          >
-            Check your email
-          </h1>
-
-          <p
-            className="text-base mb-6"
-            style={{ color: '#fafafa', fontFamily: "'Inter', system-ui, sans-serif" }}
-          >
+      <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]">
+        <div className="bg-[#171717]/80 px-6 py-12 text-center outline -outline-offset-1 outline-white/10 sm:rounded-lg sm:px-12">
+          <EnvelopeIcon className="mx-auto size-12 text-gray-400" />
+          <p className="mt-6 text-sm/6 text-white">
             We've sent a verification link to{' '}
-            <strong>{email}</strong>. Click it to confirm your account.
+            <span className="font-semibold">{email}</span>. Click it to confirm your account.
           </p>
-
           <button
             onClick={handleResend}
-            className="text-sm transition-colors hover:underline"
-            style={{ color: '#fafafa', fontFamily: "'Inter', system-ui, sans-serif" }}
+            className="mt-6 text-sm/6 font-semibold text-[#ffcd05] hover:text-[#e6b800]"
           >
             Resend email
           </button>

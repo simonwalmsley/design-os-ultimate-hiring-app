@@ -1,143 +1,67 @@
-import { useState } from 'react'
-import { Loader2 } from 'lucide-react'
-import type { AuthenticationProps } from '@/../product/sections/authentication-and-onboarding/types'
-
-type ResetPasswordProps = AuthenticationProps
+interface ResetPasswordProps {
+  onResetPassword?: (newPassword: string) => void
+}
 
 export function ResetPassword({ onResetPassword }: ResetPasswordProps) {
-  const [newPassword, setNewPassword] = useState('')
-  const [confirmPassword, setConfirmPassword] = useState('')
-  const [isLoading, setIsLoading] = useState(false)
-  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({})
-
-  const clearFieldError = (field: string) => {
-    setFieldErrors((prev) => {
-      const next = { ...prev }
-      delete next[field]
-      return next
-    })
-  }
-
-  const validate = () => {
-    const errors: Record<string, string> = {}
-    if (!newPassword.trim()) errors.newPassword = 'Password is required.'
-    else if (newPassword.length < 8) errors.newPassword = 'Password must be at least 8 characters.'
-    if (!confirmPassword.trim()) errors.confirmPassword = 'Please confirm your password.'
-    else if (newPassword !== confirmPassword) errors.confirmPassword = 'Passwords do not match.'
-    setFieldErrors(errors)
-    return Object.keys(errors).length === 0
-  }
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    if (!validate()) return
-
-    setIsLoading(true)
-    setTimeout(() => {
-      setIsLoading(false)
-      onResetPassword?.(newPassword)
-    }, 1000)
-  }
-
   return (
-    <div
-      className="min-h-screen flex flex-col items-center justify-center px-4"
-      style={{ backgroundColor: '#0a0a0a' }}
-    >
-      <div className="w-full max-w-[420px]">
-        <p
-          className="text-center text-sm font-semibold tracking-tight mb-8"
-          style={{ color: '#fafafa', fontFamily: "'Inter', system-ui, sans-serif" }}
-        >
-          Ultimate Hiring Process
-        </p>
+    <div className="flex min-h-screen flex-col justify-center bg-[#0a0a0a] py-12 sm:px-6 lg:px-8">
+      <div className="sm:mx-auto sm:w-full sm:max-w-md">
+        <img
+          alt="Ultimate Hiring Process"
+          src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=yellow&shade=400"
+          className="mx-auto h-10 w-auto"
+        />
+        <h2 className="mt-6 text-center text-2xl/9 font-bold tracking-tight text-white">Set a new password</h2>
+      </div>
 
-        <div
-          className="rounded-[0.4rem] p-8"
-          style={{ backgroundColor: '#171717', border: '1px solid #404040' }}
-        >
-          <h1
-            className="text-2xl font-semibold mb-6"
-            style={{ color: '#fafafa', fontFamily: "'Inter', system-ui, sans-serif" }}
-          >
-            Set a new password
-          </h1>
-
-          <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+      <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]">
+        <div className="bg-[#171717]/80 px-6 py-12 outline -outline-offset-1 outline-white/10 sm:rounded-lg sm:px-12">
+          <form action="#" method="POST" className="space-y-6" onSubmit={(e) => {
+            e.preventDefault()
+            const form = e.target as HTMLFormElement
+            const password = (form.elements.namedItem('new-password') as HTMLInputElement).value
+            onResetPassword?.(password)
+          }}>
             <div>
-              <label
-                className="block text-sm font-medium mb-1.5"
-                style={{ color: '#fafafa', fontFamily: "'Inter', system-ui, sans-serif" }}
-              >
+              <label htmlFor="new-password" className="block text-sm/6 font-medium text-white">
                 New password
               </label>
-              <input
-                type="password"
-                value={newPassword}
-                onChange={(e) => { setNewPassword(e.target.value); clearFieldError('newPassword') }}
-                className="w-full px-3 py-2.5 rounded-[0.4rem] text-sm outline-none transition-all focus:ring-2"
-                style={{
-                  backgroundColor: '#404040',
-                  border: '1px solid #404040',
-                  color: '#fafafa',
-                  fontFamily: "'Inter', system-ui, sans-serif",
-                  // @ts-expect-error CSS custom property
-                  '--tw-ring-color': '#ffcd05',
-                }}
-              />
-              {fieldErrors.newPassword && (
-                <p className="mt-1 text-sm" style={{ color: '#dc2828' }}>{fieldErrors.newPassword}</p>
-              )}
+              <div className="mt-2">
+                <input
+                  id="new-password"
+                  name="new-password"
+                  type="password"
+                  required
+                  autoComplete="new-password"
+                  className="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-[#ffcd05] sm:text-sm/6"
+                />
+              </div>
             </div>
 
             <div>
-              <label
-                className="block text-sm font-medium mb-1.5"
-                style={{ color: '#fafafa', fontFamily: "'Inter', system-ui, sans-serif" }}
-              >
+              <label htmlFor="confirm-password" className="block text-sm/6 font-medium text-white">
                 Confirm password
               </label>
-              <input
-                type="password"
-                value={confirmPassword}
-                onChange={(e) => { setConfirmPassword(e.target.value); clearFieldError('confirmPassword') }}
-                className="w-full px-3 py-2.5 rounded-[0.4rem] text-sm outline-none transition-all focus:ring-2"
-                style={{
-                  backgroundColor: '#404040',
-                  border: '1px solid #404040',
-                  color: '#fafafa',
-                  fontFamily: "'Inter', system-ui, sans-serif",
-                  // @ts-expect-error CSS custom property
-                  '--tw-ring-color': '#ffcd05',
-                }}
-              />
-              {fieldErrors.confirmPassword && (
-                <p className="mt-1 text-sm" style={{ color: '#dc2828' }}>{fieldErrors.confirmPassword}</p>
-              )}
+              <div className="mt-2">
+                <input
+                  id="confirm-password"
+                  name="confirm-password"
+                  type="password"
+                  required
+                  autoComplete="new-password"
+                  className="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-[#ffcd05] sm:text-sm/6"
+                />
+              </div>
             </div>
 
-            <button
-              type="submit"
-              disabled={isLoading}
-              className="w-full py-2.5 rounded-[0.4rem] text-sm font-medium transition-all
-                focus:outline-none focus:ring-2 disabled:opacity-70 flex items-center justify-center gap-2"
-              style={{
-                backgroundColor: '#ffcd05',
-                color: '#0a0a0a',
-                fontFamily: "'Inter', system-ui, sans-serif",
-                // @ts-expect-error CSS custom property
-                '--tw-ring-color': '#ffcd05',
-              }}
-            >
-              {isLoading ? (
-                <>
-                  <Loader2 className="w-4 h-4 animate-spin" />
-                  Setting password…
-                </>
-              ) : (
-                'Set new password'
-              )}
-            </button>
+            <div>
+              <button
+                type="submit"
+                className="flex w-full justify-center rounded-md bg-[#ffcd05] px-3 py-1.5 text-sm/6 font-semibold text-[#0a0a0a] hover:bg-[#e6b800] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ffcd05]"
+              >
+                Set new password
+              </button>
+            </div>
           </form>
         </div>
       </div>
