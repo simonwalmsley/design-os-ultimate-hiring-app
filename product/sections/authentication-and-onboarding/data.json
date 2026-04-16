@@ -1,0 +1,119 @@
+{
+  "_meta": {
+    "models": {
+      "profiles": "A user who can sign in to the app. Each profile is linked to an Account (business) and has a role and approval status.",
+      "accounts": "A client business. Stores the business details captured during onboarding. All hiring threads belong to the account.",
+      "onboardingPhases": "The four MVP phases shown on the How It Works screen. Static content that introduces the hiring process."
+    },
+    "relationships": [
+      "Each Profile belongs to one Account (the business they work for)",
+      "Each Account can have multiple Profiles (future: multi-user access)",
+      "Onboarding phases are static content, not linked to other entities"
+    ]
+  },
+  "profiles": [
+    {
+      "id": "profile-001",
+      "fullName": "James Ryan",
+      "email": "james.ryan@pattersonplumbing.com.au",
+      "role": "client",
+      "status": "active",
+      "accountId": "account-001"
+    },
+    {
+      "id": "profile-002",
+      "fullName": "Michael Thompson",
+      "email": "michael.thompson@brisbanecoastalbuilders.com.au",
+      "role": "client",
+      "status": "pending",
+      "accountId": "account-002"
+    },
+    {
+      "id": "profile-003",
+      "fullName": "Sarah Mitchell",
+      "email": "sarah.mitchell@sullivanrefrigeration.com.au",
+      "role": "client",
+      "status": "unverified",
+      "accountId": "account-003"
+    },
+    {
+      "id": "profile-004",
+      "fullName": "David Chen",
+      "email": "david.chen@lennoxeatery.com.au",
+      "role": "client",
+      "status": "inactive",
+      "accountId": "account-004"
+    },
+    {
+      "id": "profile-005",
+      "fullName": "Ricki Brideoake",
+      "email": "ricki@upacoaching.com.au",
+      "role": "super_admin",
+      "status": "active",
+      "accountId": "account-005"
+    }
+  ],
+  "accounts": [
+    {
+      "id": "account-001",
+      "businessName": "Patterson Plumbing",
+      "industry": "Plumbing",
+      "location": "Brisbane, QLD",
+      "phoneNumber": "+61 7 3112 4488"
+    },
+    {
+      "id": "account-002",
+      "businessName": "Brisbane Coastal Builders",
+      "industry": "Construction",
+      "location": "Gold Coast, QLD",
+      "phoneNumber": "+61 7 5501 3320"
+    },
+    {
+      "id": "account-003",
+      "businessName": "Sullivan Refrigeration",
+      "industry": "HVAC & Refrigeration",
+      "location": "Newcastle, NSW",
+      "phoneNumber": "+61 2 4907 2211"
+    },
+    {
+      "id": "account-004",
+      "businessName": "Lennox Eatery",
+      "industry": "Hospitality",
+      "location": "Byron Bay, NSW",
+      "phoneNumber": "+61 2 6687 1150"
+    },
+    {
+      "id": "account-005",
+      "businessName": "UPA Coaching",
+      "industry": "Business Coaching",
+      "location": "Melbourne, VIC",
+      "phoneNumber": "+61 3 9000 1234"
+    }
+  ],
+  "onboardingPhases": [
+    {
+      "id": "phase-1",
+      "title": "Clarity of Role",
+      "icon": "FileText",
+      "body": "Tell the AI about the role and the person you're hiring. We'll draft the three documents every great hire starts with."
+    },
+    {
+      "id": "phase-2",
+      "title": "Advertise for Role",
+      "icon": "Megaphone",
+      "body": "We write a seven-section job ad that attracts the top 1% and repels the wrong fit."
+    },
+    {
+      "id": "phase-3",
+      "title": "Role Outcomes",
+      "icon": "Target",
+      "body": "We set the five scoring categories we'll use to rank every applicant."
+    },
+    {
+      "id": "phase-4",
+      "title": "Ranking",
+      "icon": "BarChart3",
+      "body": "Upload CVs, the AI scores them against your categories, you decide who to shortlist."
+    }
+  ]
+}
