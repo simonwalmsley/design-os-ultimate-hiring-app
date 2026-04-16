@@ -4,37 +4,33 @@ import type { HiringThreadsEmptyProps } from '@/../product/sections/hiring-threa
 export function HiringThreadsEmpty({ onCreateThread }: HiringThreadsEmptyProps) {
   const [roleTitle, setRoleTitle] = useState('')
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    if (roleTitle.trim()) {
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' && !e.shiftKey && roleTitle.trim()) {
+      e.preventDefault()
       onCreateThread?.(roleTitle.trim())
     }
   }
 
   return (
-    <div className="flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center px-4">
-      <div className="mx-auto max-w-lg text-center">
-        <h1 className="text-5xl font-semibold tracking-tight text-white" style={{ letterSpacing: '-0.05em' }}>
-          Start a new hiring thread
-        </h1>
-        <p className="mt-4 text-base text-gray-400">
-          Enter the role you're hiring for
-        </p>
-        <form onSubmit={handleSubmit} className="mt-8 flex flex-col items-center gap-4">
-          <input
-            type="text"
+    <div className="flex min-h-[calc(100vh-4rem)] flex-col items-center px-4" style={{ paddingTop: '142px' }}>
+      <div className="mx-auto w-full max-w-3xl text-center">
+        <h1 className="font-semibold text-white" style={{ fontSize: '48px', lineHeight: '48px', letterSpacing: '0.5px', fontFamily: "'Inter', system-ui, sans-serif" }}>Start A New Hiring Thread</h1>
+        <div className="mx-auto mt-8 max-w-xl">
+          <textarea
             value={roleTitle}
             onChange={(e) => setRoleTitle(e.target.value)}
-            placeholder="e.g. Senior Plumber"
-            className="block w-full max-w-md rounded-md bg-white/5 px-4 py-2.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-[#ffcd05] sm:text-sm/6"
+            onKeyDown={handleKeyDown}
+            placeholder="Enter the role you are hiring for…"
+            rows={2}
+            className="block w-full rounded-xl bg-white/5 px-5 py-4 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-[#ffcd05] resize-none"
           />
-          <button
-            type="submit"
-            className="rounded-md bg-[#ffcd05] px-6 py-2 text-sm/6 font-semibold text-[#0a0a0a] hover:bg-[#e6b800] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ffcd05]"
-          >
-            Get Started
-          </button>
-        </form>
+        </div>
+        <button
+          onClick={() => { if (roleTitle.trim()) onCreateThread?.(roleTitle.trim()) }}
+          className="mt-6 rounded-md bg-[#ffcd05] px-6 py-2.5 text-sm/6 font-semibold text-[#0a0a0a] hover:bg-[#e6b800] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ffcd05]"
+        >
+          Get Started
+        </button>
       </div>
     </div>
   )
