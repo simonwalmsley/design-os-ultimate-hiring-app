@@ -4,6 +4,7 @@ export default function ShellPreview() {
   return (
     <AppShell
       breadcrumbs={['Hiring Threads', 'Senior Plumber', 'Advertise for Role']}
+      activeNav="Hiring Threads"
       activeThread="Senior Plumber"
       user={{ name: 'James Ryan', email: 'james.ryan@pattersonplumbing.com.au' }}
       onNavigate={(href) => console.log('Navigate to:', href)}

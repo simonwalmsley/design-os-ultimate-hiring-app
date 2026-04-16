@@ -80,8 +80,8 @@ function PhaseIcon({ state }: { state: PhaseState }) {
 export default function AppShell({
   children,
   breadcrumbs = ['Hiring Threads'],
-  activeThread = 'Senior Plumber',
-  activeNav = 'Hiring Threads',
+  activeThread,
+  activeNav = 'Home',
   phases = [
     { label: 'Clarity of Role', state: 'completed' },
     { label: 'Advertise for Role', state: 'current' },
