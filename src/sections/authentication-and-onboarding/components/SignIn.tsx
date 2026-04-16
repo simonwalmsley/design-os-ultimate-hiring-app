@@ -1,258 +1,111 @@
-import { useState } from 'react'
-import { Loader2 } from 'lucide-react'
-import type { AuthenticationProps } from '@/../product/sections/authentication-and-onboarding/types'
-
-interface SignInProps extends AuthenticationProps {
-  /** Show session expired toast on mount */
-  sessionExpired?: boolean
-  /** Override to show the Account Inactive failure card */
-  showInactive?: boolean
-}
-
-export function SignIn({
-  onSignIn,
-  onForgotPassword,
-  showInactive = false,
-  sessionExpired = false,
-}: SignInProps) {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [isLoading, setIsLoading] = useState(false)
-  const [error, setError] = useState<string | null>(null)
-  const [fieldErrors, setFieldErrors] = useState<{ email?: string; password?: string }>({})
-  const [showToast, setShowToast] = useState(sessionExpired)
-
-  const validate = () => {
-    const errors: { email?: string; password?: string } = {}
-    if (!email.trim()) errors.email = 'Email is required.'
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errors.email = 'Enter a valid email address.'
-    if (!password.trim()) errors.password = 'Password is required.'
-    setFieldErrors(errors)
-    return Object.keys(errors).length === 0
-  }
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    setError(null)
-    if (!validate()) return
-
-    setIsLoading(true)
-    // Simulate sign-in attempt
-    setTimeout(() => {
-      setIsLoading(false)
-      if (onSignIn) {
-        onSignIn(email, password)
-      } else {
-        // Demo: show error state
-        setError("Those details didn't match an account. Try again or reset your password.")
-        setPassword('')
-      }
-    }, 1200)
-  }
-
-  // Toast auto-dismiss
-  if (showToast) {
-    setTimeout(() => setShowToast(false), 4000)
-  }
-
-  // Account Inactive failure card
-  if (showInactive) {
-    return (
-      <div className="min-h-screen flex flex-col items-center justify-center px-4"
-        style={{ backgroundColor: '#0a0a0a' }}>
-        <div className="w-full max-w-[420px]">
-          <p className="text-center text-sm font-semibold tracking-tight mb-8"
-            style={{ color: '#fafafa', fontFamily: "'Inter', system-ui, sans-serif" }}>
-            Ultimate Hiring Process
-          </p>
-
-          <div className="rounded-[0.4rem] p-8 text-center"
-            style={{ backgroundColor: '#171717', border: '1px solid #404040' }}>
-            <h1 className="text-2xl font-semibold mb-3"
-              style={{ color: '#fafafa', fontFamily: "'Inter', system-ui, sans-serif" }}>
-              Account inactive
-            </h1>
-            <p className="text-base mb-6"
-              style={{ color: '#fafafa', fontFamily: "'Inter', system-ui, sans-serif" }}>
-              Your account has been deactivated. Please contact UPA to reactivate it.
-            </p>
-            <button
-              className="w-full py-2.5 rounded-[0.4rem] text-sm font-medium transition-colors"
-              style={{
-                border: '1px solid #404040',
-                color: '#fafafa',
-                backgroundColor: 'transparent',
-                fontFamily: "'Inter', system-ui, sans-serif",
-              }}
-              onClick={() => window.location.reload()}
-            >
-              Back to sign in
-            </button>
-          </div>
-        </div>
-      </div>
-    )
-  }
-
+export function SignIn() {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center px-4 relative"
-      style={{ backgroundColor: '#0a0a0a' }}>
+    <div className="flex min-h-screen flex-col justify-center bg-[#0a0a0a] py-12 sm:px-6 lg:px-8">
+      <div className="sm:mx-auto sm:w-full sm:max-w-md">
+        <img
+          alt="Your Company"
+          src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=yellow&shade=400"
+          className="mx-auto h-10 w-auto"
+        />
+        <h2 className="mt-6 text-center text-2xl/9 font-bold tracking-tight text-white">Sign in to your account</h2>
+      </div>
 
-      {/* Session expired toast */}
-      {showToast && (
-        <div
-          className="fixed top-4 right-4 rounded-[0.4rem] px-4 py-3 text-sm shadow-lg z-50
-            animate-[fadeIn_200ms_ease-out]"
-          style={{
-            backgroundColor: '#171717',
-            border: '1px solid #404040',
-            color: '#fafafa',
-            fontFamily: "'Inter', system-ui, sans-serif",
-          }}
-        >
-          Your session expired. Please sign in again.
-        </div>
-      )}
-
-      <div className="w-full max-w-[420px]">
-        {/* Product mark */}
-        <p className="text-center text-sm font-semibold tracking-tight mb-8"
-          style={{ color: '#fafafa', fontFamily: "'Inter', system-ui, sans-serif" }}>
-          Ultimate Hiring Process
-        </p>
-
-        {/* Page title */}
-        <h1 className="text-center text-2xl font-semibold mb-6"
-          style={{ color: '#fafafa', fontFamily: "'Inter', system-ui, sans-serif" }}>
-          Sign In
-        </h1>
-
-        {/* Card */}
-        <div className="rounded-[0.4rem] p-8"
-          style={{ backgroundColor: '#171717', border: '1px solid #404040' }}>
-
-          <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-            {/* Email */}
+      <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]">
+        <div className="bg-[#171717]/80 px-6 py-12 outline -outline-offset-1 outline-white/10 sm:rounded-lg sm:px-12">
+          <form action="#" method="POST" className="space-y-6">
             <div>
-              <label className="block text-sm font-medium mb-1.5"
-                style={{ color: '#fafafa', fontFamily: "'Inter', system-ui, sans-serif" }}>
-                Email
+              <label htmlFor="email" className="block text-sm/6 font-medium text-white">
+                Email address
               </label>
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => { setEmail(e.target.value); setFieldErrors((p) => ({ ...p, email: undefined })) }}
-                className="w-full px-3 py-2.5 rounded-[0.4rem] text-sm outline-none transition-all
-                  focus:ring-2"
-                style={{
-                  backgroundColor: '#404040',
-                  border: '1px solid #404040',
-                  color: '#fafafa',
-                  fontFamily: "'Inter', system-ui, sans-serif",
-                  // @ts-expect-error CSS custom property
-                  '--tw-ring-color': '#ffcd05',
-                }}
-              />
-              {fieldErrors.email && (
-                <p className="mt-1 text-sm" style={{ color: '#dc2828' }}>{fieldErrors.email}</p>
-              )}
-            </div>
-
-            {/* Password */}
-            <div>
-              <label className="block text-sm font-medium mb-1.5"
-                style={{ color: '#fafafa', fontFamily: "'Inter', system-ui, sans-serif" }}>
-                Password
-              </label>
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => { setPassword(e.target.value); setFieldErrors((p) => ({ ...p, password: undefined })) }}
-                className="w-full px-3 py-2.5 rounded-[0.4rem] text-sm outline-none transition-all
-                  focus:ring-2"
-                style={{
-                  backgroundColor: '#404040',
-                  border: '1px solid #404040',
-                  color: '#fafafa',
-                  fontFamily: "'Inter', system-ui, sans-serif",
-                  // @ts-expect-error CSS custom property
-                  '--tw-ring-color': '#ffcd05',
-                }}
-              />
-              {fieldErrors.password && (
-                <p className="mt-1 text-sm" style={{ color: '#dc2828' }}>{fieldErrors.password}</p>
-              )}
-
-              {/* Forgot password link */}
-              <div className="flex justify-end mt-1.5">
-                <button
-                  type="button"
-                  onClick={() => onForgotPassword?.(email)}
-                  className="text-sm transition-colors hover:underline"
-                  style={{ color: '#a3a3a3', fontFamily: "'Inter', system-ui, sans-serif" }}
-                >
-                  Forgot password?
-                </button>
+              <div className="mt-2">
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  required
+                  autoComplete="email"
+                  className="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-[#ffcd05] sm:text-sm/6"
+                />
               </div>
             </div>
 
-            {/* Form-level error */}
-            {error && (
-              <p className="text-sm" style={{ color: '#dc2828' }}>{error}</p>
-            )}
+            <div>
+              <label htmlFor="password" className="block text-sm/6 font-medium text-white">
+                Password
+              </label>
+              <div className="mt-2">
+                <input
+                  id="password"
+                  name="password"
+                  type="password"
+                  required
+                  autoComplete="current-password"
+                  className="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-[#ffcd05] sm:text-sm/6"
+                />
+              </div>
+            </div>
 
-            {/* Sign In button */}
-            <button
-              type="submit"
-              disabled={isLoading}
-              className="w-full py-2.5 rounded-[0.4rem] text-sm font-medium transition-all
-                focus:outline-none focus:ring-2 disabled:opacity-70 flex items-center justify-center gap-2"
-              style={{
-                backgroundColor: '#ffcd05',
-                color: '#0a0a0a',
-                fontFamily: "'Inter', system-ui, sans-serif",
-                // @ts-expect-error CSS custom property
-                '--tw-ring-color': '#ffcd05',
-              }}
-            >
-              {isLoading ? (
-                <>
-                  <Loader2 className="w-4 h-4 animate-spin" />
-                  Signing in…
-                </>
-              ) : (
-                'Sign In'
-              )}
-            </button>
+            <div className="flex items-center justify-between">
+              <div className="flex gap-3">
+                <div className="flex h-6 shrink-0 items-center">
+                  <div className="group grid size-4 grid-cols-1">
+                    <input
+                      id="remember-me"
+                      name="remember-me"
+                      type="checkbox"
+                      className="col-start-1 row-start-1 appearance-none rounded-sm border border-white/10 bg-white/5 checked:border-[#ffcd05] checked:bg-[#ffcd05] indeterminate:border-[#ffcd05] indeterminate:bg-[#ffcd05] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ffcd05] disabled:border-gray-300 disabled:bg-gray-100 disabled:checked:bg-gray-100 forced-colors:appearance-auto"
+                    />
+                    <svg
+                      fill="none"
+                      viewBox="0 0 14 14"
+                      className="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-[#0a0a0a] group-has-disabled:stroke-white/25"
+                    >
+                      <path
+                        d="M3 8L6 11L11 3.5"
+                        strokeWidth={2}
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="opacity-0 group-has-checked:opacity-100"
+                      />
+                      <path
+                        d="M3 7H11"
+                        strokeWidth={2}
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="opacity-0 group-has-indeterminate:opacity-100"
+                      />
+                    </svg>
+                  </div>
+                </div>
+                <label htmlFor="remember-me" className="block text-sm/6 text-white">
+                  Remember me
+                </label>
+              </div>
+
+              <div className="text-sm/6">
+                <a href="#" className="font-semibold text-[#ffcd05] hover:text-[#e6b800]">
+                  Forgot password?
+                </a>
+              </div>
+            </div>
+
+            <div>
+              <button
+                type="submit"
+                className="flex w-full justify-center rounded-md bg-[#ffcd05] px-3 py-1.5 text-sm/6 font-semibold text-[#0a0a0a] hover:bg-[#e6b800] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ffcd05]"
+              >
+                Sign in
+              </button>
+            </div>
           </form>
         </div>
 
-        {/* Divider */}
-        <div className="relative flex items-center my-6">
-          <div className="flex-1 h-px" style={{ backgroundColor: '#404040' }} />
-          <span className="px-3 text-sm" style={{ color: '#a3a3a3' }}>or</span>
-          <div className="flex-1 h-px" style={{ backgroundColor: '#404040' }} />
-        </div>
-
-        {/* Create account block */}
-        <div className="text-center">
-          <p className="text-sm font-medium mb-3"
-            style={{ color: '#fafafa', fontFamily: "'Inter', system-ui, sans-serif" }}>
-            New to Ultimate Hiring Process?
-          </p>
-          <button
-            className="w-full py-2.5 rounded-[0.4rem] text-sm font-medium transition-colors
-              hover:bg-white/5"
-            style={{
-              border: '1px solid #404040',
-              color: '#fafafa',
-              backgroundColor: 'transparent',
-              fontFamily: "'Inter', system-ui, sans-serif",
-            }}
-          >
-            Create an account
-          </button>
-        </div>
+        <p className="mt-10 text-center text-sm/6 text-gray-400">
+          Not a member?{' '}
+          <a href="#" className="font-semibold text-[#ffcd05] hover:text-[#e6b800]">
+            Start a 14 day free trial
+          </a>
+        </p>
       </div>
     </div>
   )

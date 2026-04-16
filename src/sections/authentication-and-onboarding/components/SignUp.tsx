@@ -1,234 +1,99 @@
-import { useState } from 'react'
-import { Loader2 } from 'lucide-react'
-import type { AuthenticationProps } from '@/../product/sections/authentication-and-onboarding/types'
-
-interface SignUpProps extends AuthenticationProps {
-  /** Called when user clicks "Already have an account? Sign in" */
-  onGoToSignIn?: () => void
-}
-
-export function SignUp({ onSignUp, onGoToSignIn }: SignUpProps) {
-  const [fullName, setFullName] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [confirmPassword, setConfirmPassword] = useState('')
-  const [isLoading, setIsLoading] = useState(false)
-  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({})
-  const [formError, setFormError] = useState<string | null>(null)
-
-  const validate = () => {
-    const errors: Record<string, string> = {}
-    if (!fullName.trim()) errors.fullName = 'Full name is required.'
-    if (!email.trim()) errors.email = 'Email is required.'
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errors.email = 'Enter a valid email address.'
-    if (!password.trim()) errors.password = 'Password is required.'
-    else if (password.length < 8) errors.password = 'Password must be at least 8 characters.'
-    if (!confirmPassword.trim()) errors.confirmPassword = 'Please confirm your password.'
-    else if (password !== confirmPassword) errors.confirmPassword = 'Passwords do not match.'
-    setFieldErrors(errors)
-    return Object.keys(errors).length === 0
-  }
-
-  const clearFieldError = (field: string) => {
-    setFieldErrors((prev) => {
-      const next = { ...prev }
-      delete next[field]
-      return next
-    })
-  }
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    setFormError(null)
-    if (!validate()) return
-
-    setIsLoading(true)
-    setTimeout(() => {
-      setIsLoading(false)
-      if (onSignUp) {
-        onSignUp(fullName, email, password)
-      } else {
-        setFormError("Couldn't create your account. Try again.")
-      }
-    }, 1200)
-  }
-
+export function SignUp() {
   return (
-    <div
-      className="min-h-screen flex flex-col items-center justify-center px-4"
-      style={{ backgroundColor: '#0a0a0a' }}
-    >
-      <div className="w-full max-w-[420px]">
-        {/* Product mark */}
-        <p
-          className="text-center text-sm font-semibold tracking-tight mb-8"
-          style={{ color: '#fafafa', fontFamily: "'Inter', system-ui, sans-serif" }}
-        >
-          Ultimate Hiring Process
-        </p>
+    <div className="flex min-h-screen flex-col justify-center bg-[#0a0a0a] py-12 sm:px-6 lg:px-8">
+      <div className="sm:mx-auto sm:w-full sm:max-w-md">
+        <img
+          alt="Your Company"
+          src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=yellow&shade=400"
+          className="mx-auto h-10 w-auto"
+        />
+        <h2 className="mt-6 text-center text-2xl/9 font-bold tracking-tight text-white">Create your account</h2>
+      </div>
 
-        {/* Card */}
-        <div
-          className="rounded-[0.4rem] p-8"
-          style={{ backgroundColor: '#171717', border: '1px solid #404040' }}
-        >
-          <h1
-            className="text-2xl font-semibold mb-6"
-            style={{ color: '#fafafa', fontFamily: "'Inter', system-ui, sans-serif" }}
-          >
-            Create your account
-          </h1>
-
-          <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-            {/* Full name */}
+      <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]">
+        <div className="bg-[#171717]/80 px-6 py-12 outline -outline-offset-1 outline-white/10 sm:rounded-lg sm:px-12">
+          <form action="#" method="POST" className="space-y-6">
             <div>
-              <label
-                className="block text-sm font-medium mb-1.5"
-                style={{ color: '#fafafa', fontFamily: "'Inter', system-ui, sans-serif" }}
-              >
+              <label htmlFor="full-name" className="block text-sm/6 font-medium text-white">
                 Full name
               </label>
-              <input
-                type="text"
-                value={fullName}
-                onChange={(e) => { setFullName(e.target.value); clearFieldError('fullName') }}
-                className="w-full px-3 py-2.5 rounded-[0.4rem] text-sm outline-none transition-all focus:ring-2"
-                style={{
-                  backgroundColor: '#404040',
-                  border: '1px solid #404040',
-                  color: '#fafafa',
-                  fontFamily: "'Inter', system-ui, sans-serif",
-                  // @ts-expect-error CSS custom property
-                  '--tw-ring-color': '#ffcd05',
-                }}
-              />
-              {fieldErrors.fullName && (
-                <p className="mt-1 text-sm" style={{ color: '#dc2828' }}>{fieldErrors.fullName}</p>
-              )}
+              <div className="mt-2">
+                <input
+                  id="full-name"
+                  name="full-name"
+                  type="text"
+                  required
+                  autoComplete="name"
+                  className="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-[#ffcd05] sm:text-sm/6"
+                />
+              </div>
             </div>
 
-            {/* Email */}
             <div>
-              <label
-                className="block text-sm font-medium mb-1.5"
-                style={{ color: '#fafafa', fontFamily: "'Inter', system-ui, sans-serif" }}
-              >
-                Email
+              <label htmlFor="email" className="block text-sm/6 font-medium text-white">
+                Email address
               </label>
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => { setEmail(e.target.value); clearFieldError('email') }}
-                className="w-full px-3 py-2.5 rounded-[0.4rem] text-sm outline-none transition-all focus:ring-2"
-                style={{
-                  backgroundColor: '#404040',
-                  border: '1px solid #404040',
-                  color: '#fafafa',
-                  fontFamily: "'Inter', system-ui, sans-serif",
-                  // @ts-expect-error CSS custom property
-                  '--tw-ring-color': '#ffcd05',
-                }}
-              />
-              {fieldErrors.email && (
-                <p className="mt-1 text-sm" style={{ color: '#dc2828' }}>{fieldErrors.email}</p>
-              )}
+              <div className="mt-2">
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  required
+                  autoComplete="email"
+                  className="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-[#ffcd05] sm:text-sm/6"
+                />
+              </div>
             </div>
 
-            {/* Password */}
             <div>
-              <label
-                className="block text-sm font-medium mb-1.5"
-                style={{ color: '#fafafa', fontFamily: "'Inter', system-ui, sans-serif" }}
-              >
+              <label htmlFor="password" className="block text-sm/6 font-medium text-white">
                 Password
               </label>
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => { setPassword(e.target.value); clearFieldError('password') }}
-                className="w-full px-3 py-2.5 rounded-[0.4rem] text-sm outline-none transition-all focus:ring-2"
-                style={{
-                  backgroundColor: '#404040',
-                  border: '1px solid #404040',
-                  color: '#fafafa',
-                  fontFamily: "'Inter', system-ui, sans-serif",
-                  // @ts-expect-error CSS custom property
-                  '--tw-ring-color': '#ffcd05',
-                }}
-              />
-              {fieldErrors.password && (
-                <p className="mt-1 text-sm" style={{ color: '#dc2828' }}>{fieldErrors.password}</p>
-              )}
+              <div className="mt-2">
+                <input
+                  id="password"
+                  name="password"
+                  type="password"
+                  required
+                  autoComplete="new-password"
+                  className="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-[#ffcd05] sm:text-sm/6"
+                />
+              </div>
             </div>
 
-            {/* Confirm password */}
             <div>
-              <label
-                className="block text-sm font-medium mb-1.5"
-                style={{ color: '#fafafa', fontFamily: "'Inter', system-ui, sans-serif" }}
-              >
+              <label htmlFor="confirm-password" className="block text-sm/6 font-medium text-white">
                 Confirm password
               </label>
-              <input
-                type="password"
-                value={confirmPassword}
-                onChange={(e) => { setConfirmPassword(e.target.value); clearFieldError('confirmPassword') }}
-                className="w-full px-3 py-2.5 rounded-[0.4rem] text-sm outline-none transition-all focus:ring-2"
-                style={{
-                  backgroundColor: '#404040',
-                  border: '1px solid #404040',
-                  color: '#fafafa',
-                  fontFamily: "'Inter', system-ui, sans-serif",
-                  // @ts-expect-error CSS custom property
-                  '--tw-ring-color': '#ffcd05',
-                }}
-              />
-              {fieldErrors.confirmPassword && (
-                <p className="mt-1 text-sm" style={{ color: '#dc2828' }}>{fieldErrors.confirmPassword}</p>
-              )}
+              <div className="mt-2">
+                <input
+                  id="confirm-password"
+                  name="confirm-password"
+                  type="password"
+                  required
+                  autoComplete="new-password"
+                  className="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-[#ffcd05] sm:text-sm/6"
+                />
+              </div>
             </div>
 
-            {/* Form-level error */}
-            {formError && (
-              <p className="text-sm" style={{ color: '#dc2828' }}>{formError}</p>
-            )}
-
-            {/* Create account button */}
-            <button
-              type="submit"
-              disabled={isLoading}
-              className="w-full py-2.5 rounded-[0.4rem] text-sm font-medium transition-all
-                focus:outline-none focus:ring-2 disabled:opacity-70 flex items-center justify-center gap-2"
-              style={{
-                backgroundColor: '#ffcd05',
-                color: '#0a0a0a',
-                fontFamily: "'Inter', system-ui, sans-serif",
-                // @ts-expect-error CSS custom property
-                '--tw-ring-color': '#ffcd05',
-              }}
-            >
-              {isLoading ? (
-                <>
-                  <Loader2 className="w-4 h-4 animate-spin" />
-                  Creating account…
-                </>
-              ) : (
-                'Create account'
-              )}
-            </button>
+            <div>
+              <button
+                type="submit"
+                className="flex w-full justify-center rounded-md bg-[#ffcd05] px-3 py-1.5 text-sm/6 font-semibold text-[#0a0a0a] hover:bg-[#e6b800] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ffcd05]"
+              >
+                Create account
+              </button>
+            </div>
           </form>
-
-          {/* Sign in link */}
-          <p className="text-center text-sm mt-5">
-            <button
-              onClick={onGoToSignIn}
-              className="transition-colors hover:underline"
-              style={{ color: '#fafafa', fontFamily: "'Inter', system-ui, sans-serif" }}
-            >
-              Already have an account? Sign in
-            </button>
-          </p>
         </div>
+
+        <p className="mt-10 text-center text-sm/6 text-gray-400">
+          Already have an account?{' '}
+          <a href="#" className="font-semibold text-[#ffcd05] hover:text-[#e6b800]">
+            Sign in
+          </a>
+        </p>
       </div>
     </div>
   )
