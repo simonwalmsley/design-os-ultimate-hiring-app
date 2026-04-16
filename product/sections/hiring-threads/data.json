@@ -1,0 +1,75 @@
+{
+  "_meta": {
+    "models": {
+      "threads": "A hiring thread represents one hiring process for one role. Tracks which phase the client is up to, applicant counts, and overall status.",
+      "kpis": "Summary metrics displayed at the top of the populated thread list."
+    },
+    "relationships": [
+      "Each Thread belongs to one Account (the client's business)",
+      "KPIs are computed from all threads belonging to the account"
+    ]
+  },
+  "kpis": {
+    "activeThreads": 4,
+    "totalApplicants": 127,
+    "shortlisted": 9
+  },
+  "threads": [
+    {
+      "id": "thread-001",
+      "roleTitle": "Senior Plumber",
+      "businessName": "Patterson Plumbing",
+      "location": "Brisbane",
+      "currentPhase": 4,
+      "totalPhases": 9,
+      "applicants": 47,
+      "shortlisted": 3,
+      "reviewed": 12,
+      "status": "ranking-in-progress",
+      "lastUpdated": "Updated 2 hours ago",
+      "needsUpdate": false
+    },
+    {
+      "id": "thread-002",
+      "roleTitle": "Site Supervisor",
+      "businessName": "Brisbane Coastal Builders",
+      "location": "Gold Coast",
+      "currentPhase": 3,
+      "totalPhases": 9,
+      "applicants": 28,
+      "shortlisted": 0,
+      "reviewed": 0,
+      "status": "waiting-for-applicants",
+      "lastUpdated": "Updated 5 hours ago",
+      "needsUpdate": true
+    },
+    {
+      "id": "thread-003",
+      "roleTitle": "Refrigeration Mechanic",
+      "businessName": "Sullivan Refrigeration",
+      "location": "Newcastle",
+      "currentPhase": 2,
+      "totalPhases": 9,
+      "applicants": 0,
+      "shortlisted": 0,
+      "reviewed": 0,
+      "status": "setup-in-progress",
+      "lastUpdated": "Updated yesterday",
+      "needsUpdate": false
+    },
+    {
+      "id": "thread-004",
+      "roleTitle": "Hospitality Manager",
+      "businessName": "Lennox Eatery",
+      "location": "Byron Bay",
+      "currentPhase": 4,
+      "totalPhases": 9,
+      "applicants": 52,
+      "shortlisted": 6,
+      "reviewed": 38,
+      "status": "shortlist-ready",
+      "lastUpdated": "Updated 3 days ago",
+      "needsUpdate": false
+    }
+  ]
+}
