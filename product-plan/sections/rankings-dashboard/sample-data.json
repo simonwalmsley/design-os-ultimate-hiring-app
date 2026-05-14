@@ -1,0 +1,534 @@
+{
+  "_meta": {
+    "models": {
+      "thread": "The hiring thread this ranking belongs to - one role being hired for one business.",
+      "phase": "Phase 4, Ranking - the overall status of scoring and how many applicants have been processed so far.",
+      "summary": "Headline counts for the leaderboard - total applicants, how many are scored, shortlisted, rejected, and the average score.",
+      "scoringCategories": "The five priority-ranked criteria from Phase 3 that every applicant is scored against.",
+      "applicants": "A candidate who applied for the role. Has a CV, an overall AI score, a per-category score breakdown, and a status.",
+      "applicantScore": "One applicant's score against one Scoring Category - a 1-10 rating with a written explanation and a quoted CV snippet as evidence."
+    },
+    "relationships": [
+      "Each Applicant belongs to one Hiring Thread",
+      "Each Applicant has one Applicant Score per Scoring Category (five in total)",
+      "Each Applicant Score links to a Scoring Category via categoryPriority",
+      "The Summary counts are computed across all Applicants in the thread",
+      "Scoring Categories are carried over from Phase 3 (Role Outcomes)"
+    ]
+  },
+  "thread": {
+    "id": "thread-001",
+    "roleTitle": "Senior Plumber",
+    "businessName": "Patterson Plumbing"
+  },
+  "phase": {
+    "phaseNumber": 4,
+    "title": "Ranking",
+    "status": "ranking-in-progress",
+    "scoringProgress": {
+      "scored": 10,
+      "total": 12
+    }
+  },
+  "summary": {
+    "totalApplicants": 12,
+    "scored": 10,
+    "shortlisted": 3,
+    "rejected": 2,
+    "averageScore": 71
+  },
+  "scoringCategories": [
+    {
+      "priority": 1,
+      "label": "Independent Job Ownership",
+      "description": "Can run a residential or light commercial job from quote to completion without supervision.",
+      "priorityReason": "The role exists specifically to remove the ceiling created by only the owner being able to run jobs end to end."
+    },
+    {
+      "priority": 2,
+      "label": "Licensing & Technical Depth",
+      "description": "Fully licensed with the years on the tools to handle renovations, hot water, and leak detection confidently.",
+      "priorityReason": "A non-negotiable baseline, but ranked below ownership because plenty of licensed plumbers still can't run a job."
+    },
+    {
+      "priority": 3,
+      "label": "Customer Communication",
+      "description": "Can talk to customers properly, set expectations, and represent the business inside someone's home.",
+      "priorityReason": "Named as exactly what went wrong with the hire that didn't work out, and the business runs on word of mouth."
+    },
+    {
+      "priority": 4,
+      "label": "Workmanship Standard",
+      "description": "Takes pride in clean, finished work that holds up and reflects the Patterson name.",
+      "priorityReason": "Central to the business's reputation, though it tends to come bundled with technical depth."
+    },
+    {
+      "priority": 5,
+      "label": "Longevity & Fit",
+      "description": "Likely to stay and grow with the business rather than treating it as a stepping stone.",
+      "priorityReason": "The crew's long tenure shows this matters, but it's the hardest to read from a CV."
+    }
+  ],
+  "applicants": [
+    {
+      "id": "applicant-001",
+      "name": "Darren Mitchell",
+      "cvFileName": "darren-mitchell-cv.pdf",
+      "submittedDate": "Applied 2 days ago",
+      "status": "shortlisted",
+      "overallScore": 91,
+      "cvText": "Licensed plumber and gasfitter with 14 years' experience across residential renovation, hot water, and leak detection. Spent the last six years running my own north-side service business with a team of two, handling everything from first quote to final handover. Known for clean finishes and zero warranty callbacks. Now looking to bring that experience into an established team with room to lead. References available from long-term clients and trade partners.",
+      "scores": [
+        {
+          "categoryPriority": 1,
+          "categoryLabel": "Independent Job Ownership",
+          "score": 9,
+          "explanation": "Ran his own service van and a team of two for six years with full quote-to-completion responsibility.",
+          "evidence": "\"Sole charge of all north-side service work, no supervision\""
+        },
+        {
+          "categoryPriority": 2,
+          "categoryLabel": "Licensing & Technical Depth",
+          "score": 9,
+          "explanation": "Fully licensed for 14 years with a renovation and hot water background that matches the role exactly.",
+          "evidence": "\"Licensed plumber and gasfitter, 14 years\""
+        },
+        {
+          "categoryPriority": 3,
+          "categoryLabel": "Customer Communication",
+          "score": 9,
+          "explanation": "Built a repeat client base on upfront quoting and follow-up - a customer-facing track record.",
+          "evidence": "\"Built repeat client base through honest, upfront communication\""
+        },
+        {
+          "categoryPriority": 4,
+          "categoryLabel": "Workmanship Standard",
+          "score": 10,
+          "explanation": "References explicitly praise finish quality, and he reports zero warranty callbacks.",
+          "evidence": "\"Zero warranty callbacks across three years\""
+        },
+        {
+          "categoryPriority": 5,
+          "categoryLabel": "Longevity & Fit",
+          "score": 8,
+          "explanation": "Long tenures throughout, and explicitly seeking a long-term role with an established team.",
+          "evidence": "\"Seeking a long-term role with an established team\""
+        }
+      ]
+    },
+    {
+      "id": "applicant-002",
+      "name": "Joel Hartley",
+      "cvFileName": "joel-hartley-cv.pdf",
+      "submittedDate": "Applied 3 days ago",
+      "status": "shortlisted",
+      "overallScore": 86,
+      "cvText": "Plumber with 11 years' experience, the last four as a leading hand on residential renovation projects. Comfortable scoping jobs, ordering materials, and running an apprentice. Strong on hot water and bathroom fit-outs. Looking for a role with more autonomy and a clear path to running my own crew.",
+      "scores": [
+        {
+          "categoryPriority": 1,
+          "categoryLabel": "Independent Job Ownership",
+          "score": 9,
+          "explanation": "Four years as a leading hand scoping jobs, ordering materials, and running an apprentice.",
+          "evidence": "\"Leading hand on residential renovation projects\""
+        },
+        {
+          "categoryPriority": 2,
+          "categoryLabel": "Licensing & Technical Depth",
+          "score": 9,
+          "explanation": "11 years licensed with strong hot water and bathroom fit-out experience.",
+          "evidence": "\"Strong on hot water and bathroom fit-outs\""
+        },
+        {
+          "categoryPriority": 3,
+          "categoryLabel": "Customer Communication",
+          "score": 8,
+          "explanation": "Job-scoping experience implies customer contact, though the CV doesn't dwell on it.",
+          "evidence": "\"Comfortable scoping jobs\""
+        },
+        {
+          "categoryPriority": 4,
+          "categoryLabel": "Workmanship Standard",
+          "score": 8,
+          "explanation": "Renovation and fit-out focus points to finish-sensitive work, no callbacks mentioned either way.",
+          "evidence": "\"Residential renovation projects\""
+        },
+        {
+          "categoryPriority": 5,
+          "categoryLabel": "Longevity & Fit",
+          "score": 7,
+          "explanation": "Solid four-year stint in the current role and explicitly wants a path to running a crew.",
+          "evidence": "\"A clear path to running my own crew\""
+        }
+      ]
+    },
+    {
+      "id": "applicant-003",
+      "name": "Priya Nair",
+      "cvFileName": "priya-nair-cv.pdf",
+      "submittedDate": "Applied 4 days ago",
+      "status": "shortlisted",
+      "overallScore": 83,
+      "cvText": "Licensed plumber with 9 years' experience, including 3 years coordinating a small maintenance team for a property group. Exceptional at customer handling - managed tenant and owner communications daily and consistently rated highest in client feedback. Solid all-round residential skills. Keen to move from maintenance into renovation-focused work.",
+      "scores": [
+        {
+          "categoryPriority": 1,
+          "categoryLabel": "Independent Job Ownership",
+          "score": 8,
+          "explanation": "Coordinated a small maintenance team for three years - real ownership, though in maintenance rather than renovation.",
+          "evidence": "\"Coordinating a small maintenance team for a property group\""
+        },
+        {
+          "categoryPriority": 2,
+          "categoryLabel": "Licensing & Technical Depth",
+          "score": 8,
+          "explanation": "9 years licensed with solid all-round residential skills; renovation depth is the open question.",
+          "evidence": "\"Solid all-round residential skills\""
+        },
+        {
+          "categoryPriority": 3,
+          "categoryLabel": "Customer Communication",
+          "score": 10,
+          "explanation": "Managed tenant and owner communications daily and rated highest in client feedback - the standout strength.",
+          "evidence": "\"Consistently rated highest in client feedback\""
+        },
+        {
+          "categoryPriority": 4,
+          "categoryLabel": "Workmanship Standard",
+          "score": 8,
+          "explanation": "Maintenance background suggests reliable, tidy work; no specific finish references either way.",
+          "evidence": "\"Solid all-round residential skills\""
+        },
+        {
+          "categoryPriority": 5,
+          "categoryLabel": "Longevity & Fit",
+          "score": 8,
+          "explanation": "Steady tenures and a clear, motivated reason for the move into renovation work.",
+          "evidence": "\"Keen to move from maintenance into renovation-focused work\""
+        }
+      ]
+    },
+    {
+      "id": "applicant-004",
+      "name": "Wayne Castellano",
+      "cvFileName": "wayne-castellano-cv.pdf",
+      "submittedDate": "Applied 3 days ago",
+      "status": "scored",
+      "overallScore": 79,
+      "cvText": "Plumber with 18 years on the tools, mostly subcontracting on renovation and new-build sites. Very strong technically across all residential work. Used to working solo and getting the job done. Prefer to keep customer contact light and let the work speak for itself.",
+      "scores": [
+        {
+          "categoryPriority": 1,
+          "categoryLabel": "Independent Job Ownership",
+          "score": 8,
+          "explanation": "Long history of solo subcontracting - clearly self-directed, used to getting jobs done unsupervised.",
+          "evidence": "\"Used to working solo and getting the job done\""
+        },
+        {
+          "categoryPriority": 2,
+          "categoryLabel": "Licensing & Technical Depth",
+          "score": 9,
+          "explanation": "18 years across renovation and new-build - the deepest technical background in the field.",
+          "evidence": "\"Very strong technically across all residential work\""
+        },
+        {
+          "categoryPriority": 3,
+          "categoryLabel": "Customer Communication",
+          "score": 6,
+          "explanation": "Explicitly prefers to keep customer contact light - a real gap against a word-of-mouth business.",
+          "evidence": "\"Prefer to keep customer contact light\""
+        },
+        {
+          "categoryPriority": 4,
+          "categoryLabel": "Workmanship Standard",
+          "score": 8,
+          "explanation": "\"Let the work speak for itself\" signals pride in the finish, backed by long renovation experience.",
+          "evidence": "\"Let the work speak for itself\""
+        },
+        {
+          "categoryPriority": 5,
+          "categoryLabel": "Longevity & Fit",
+          "score": 7,
+          "explanation": "Stable career but a long subcontracting habit raises a small question about settling into a team.",
+          "evidence": "\"Mostly subcontracting on renovation and new-build sites\""
+        }
+      ]
+    },
+    {
+      "id": "applicant-005",
+      "name": "Brett Sullivan",
+      "cvFileName": "brett-sullivan-cv.pdf",
+      "submittedDate": "Applied 5 days ago",
+      "status": "scored",
+      "overallScore": 74,
+      "cvText": "Licensed plumber, 8 years' experience across general residential plumbing and maintenance. Reliable, punctual, and good with customers. Have worked in small teams the whole time and would be comfortable taking on more responsibility with some support.",
+      "scores": [
+        {
+          "categoryPriority": 1,
+          "categoryLabel": "Independent Job Ownership",
+          "score": 7,
+          "explanation": "Comfortable with more responsibility but says he'd want some support - not yet fully autonomous.",
+          "evidence": "\"Comfortable taking on more responsibility with some support\""
+        },
+        {
+          "categoryPriority": 2,
+          "categoryLabel": "Licensing & Technical Depth",
+          "score": 8,
+          "explanation": "8 years licensed across general residential and maintenance - solid if not specialised.",
+          "evidence": "\"8 years' experience across general residential plumbing\""
+        },
+        {
+          "categoryPriority": 3,
+          "categoryLabel": "Customer Communication",
+          "score": 7,
+          "explanation": "States he is good with customers; reliable and punctual, though no specific evidence.",
+          "evidence": "\"Reliable, punctual, and good with customers\""
+        },
+        {
+          "categoryPriority": 4,
+          "categoryLabel": "Workmanship Standard",
+          "score": 7,
+          "explanation": "Reliability and punctuality suggest dependable work; nothing specific on finish quality.",
+          "evidence": "\"Reliable, punctual\""
+        },
+        {
+          "categoryPriority": 5,
+          "categoryLabel": "Longevity & Fit",
+          "score": 8,
+          "explanation": "Has worked in small teams his whole career - a natural fit for the Patterson crew size.",
+          "evidence": "\"Worked in small teams the whole time\""
+        }
+      ]
+    },
+    {
+      "id": "applicant-006",
+      "name": "Tom Beckett",
+      "cvFileName": "tom-beckett-cv.pdf",
+      "submittedDate": "Applied 4 days ago",
+      "status": "scored",
+      "overallScore": 71,
+      "cvText": "Plumber with 7 years' experience, recently focused on hot water service and replacement work. Great rapport with customers - most of my work now comes from referrals. Less experience on full renovation jobs but a fast learner.",
+      "scores": [
+        {
+          "categoryPriority": 1,
+          "categoryLabel": "Independent Job Ownership",
+          "score": 7,
+          "explanation": "Runs his own hot water jobs end to end, but full renovation ownership is unproven.",
+          "evidence": "\"Most of my work now comes from referrals\""
+        },
+        {
+          "categoryPriority": 2,
+          "categoryLabel": "Licensing & Technical Depth",
+          "score": 7,
+          "explanation": "7 years licensed but recently narrowed to hot water - renovation depth is thinner.",
+          "evidence": "\"Less experience on full renovation jobs\""
+        },
+        {
+          "categoryPriority": 3,
+          "categoryLabel": "Customer Communication",
+          "score": 8,
+          "explanation": "A referral-driven workload is strong evidence of genuine rapport with customers.",
+          "evidence": "\"Great rapport with customers\""
+        },
+        {
+          "categoryPriority": 4,
+          "categoryLabel": "Workmanship Standard",
+          "score": 7,
+          "explanation": "Referral work implies satisfied customers; no direct finish-quality references.",
+          "evidence": "\"Most of my work now comes from referrals\""
+        },
+        {
+          "categoryPriority": 5,
+          "categoryLabel": "Longevity & Fit",
+          "score": 6,
+          "explanation": "Reasonable tenure, but a recent narrowing to hot water raises a slight direction question.",
+          "evidence": "\"Recently focused on hot water service and replacement work\""
+        }
+      ]
+    },
+    {
+      "id": "applicant-007",
+      "name": "Aaron Whitcombe",
+      "cvFileName": "aaron-whitcombe-cv.pdf",
+      "submittedDate": "Applied 6 days ago",
+      "status": "scored",
+      "overallScore": 66,
+      "cvText": "Licensed plumber with 6 years' experience in general residential and commercial maintenance. Have always worked under a supervisor or foreman. Keen to step up and learn how to run jobs myself.",
+      "scores": [
+        {
+          "categoryPriority": 1,
+          "categoryLabel": "Independent Job Ownership",
+          "score": 6,
+          "explanation": "Has always worked under a supervisor and is keen but unproven at running jobs himself.",
+          "evidence": "\"Have always worked under a supervisor or foreman\""
+        },
+        {
+          "categoryPriority": 2,
+          "categoryLabel": "Licensing & Technical Depth",
+          "score": 7,
+          "explanation": "6 years licensed across residential and commercial maintenance - a reasonable base.",
+          "evidence": "\"6 years' experience in general residential and commercial maintenance\""
+        },
+        {
+          "categoryPriority": 3,
+          "categoryLabel": "Customer Communication",
+          "score": 7,
+          "explanation": "Maintenance work involves customer contact, though the CV offers no specific evidence.",
+          "evidence": "\"General residential and commercial maintenance\""
+        },
+        {
+          "categoryPriority": 4,
+          "categoryLabel": "Workmanship Standard",
+          "score": 6,
+          "explanation": "No finish-quality references either way; maintenance focus is neutral on this.",
+          "evidence": "\"General residential and commercial maintenance\""
+        },
+        {
+          "categoryPriority": 5,
+          "categoryLabel": "Longevity & Fit",
+          "score": 6,
+          "explanation": "Genuine appetite to step up, but limited evidence on how long he tends to stay.",
+          "evidence": "\"Keen to step up and learn how to run jobs myself\""
+        }
+      ]
+    },
+    {
+      "id": "applicant-008",
+      "name": "Lachlan Reed",
+      "cvFileName": "lachlan-reed-cv.pdf",
+      "submittedDate": "Applied 5 days ago",
+      "status": "scored",
+      "overallScore": 61,
+      "cvText": "I finished my plumbing apprenticeship just over three years ago and got my licence about eighteen months back. Since then I've been working for a mid-sized residential outfit doing a real mix of work - bathroom renovations, hot water swaps, blocked drains, the lot. I've always had someone more senior on site with me but lately I've been getting handed smaller jobs to run on my own and it's gone well. I'm honestly really keen to find somewhere I can keep growing, get more renovation work under my belt, and stick around for the long haul rather than bouncing between sites. I think I'm good with customers - I always explain what I'm doing and why - and I take a lot of pride in leaving a job tidy. I know I'm not the most experienced person who'll apply for this but I'm hungry and I learn fast.",
+      "scores": [
+        {
+          "categoryPriority": 1,
+          "categoryLabel": "Independent Job Ownership",
+          "score": 5,
+          "explanation": "Only recently handed small jobs to run solo - early signs are good but ownership is largely unproven.",
+          "evidence": "\"Lately I've been getting handed smaller jobs to run on my own\""
+        },
+        {
+          "categoryPriority": 2,
+          "categoryLabel": "Licensing & Technical Depth",
+          "score": 7,
+          "explanation": "Licensed 18 months with a genuinely broad mix of residential work for the experience level.",
+          "evidence": "\"Bathroom renovations, hot water swaps, blocked drains, the lot\""
+        },
+        {
+          "categoryPriority": 3,
+          "categoryLabel": "Customer Communication",
+          "score": 6,
+          "explanation": "Self-reports explaining work clearly to customers, but it's self-assessed with no external evidence.",
+          "evidence": "\"I always explain what I'm doing and why\""
+        },
+        {
+          "categoryPriority": 4,
+          "categoryLabel": "Workmanship Standard",
+          "score": 6,
+          "explanation": "States he takes pride in leaving a job tidy; plausible but unverified at this stage.",
+          "evidence": "\"I take a lot of pride in leaving a job tidy\""
+        },
+        {
+          "categoryPriority": 5,
+          "categoryLabel": "Longevity & Fit",
+          "score": 7,
+          "explanation": "Clearly motivated to settle and grow long-term, which fits the crew well despite the junior level.",
+          "evidence": "\"Stick around for the long haul rather than bouncing between sites\""
+        }
+      ]
+    },
+    {
+      "id": "applicant-009",
+      "name": "Steve Papadopoulos",
+      "cvFileName": "steve-papadopoulos-cv.pdf",
+      "submittedDate": "Applied 7 days ago",
+      "status": "rejected",
+      "overallScore": 54,
+      "cvText": "Licensed plumber, 20+ years' experience. Done it all. Worked for a dozen different companies over the years. I do good work but I'm not one for chit-chat with customers - I'd rather just get in and out. Looking for something close to home.",
+      "scores": [
+        {
+          "categoryPriority": 1,
+          "categoryLabel": "Independent Job Ownership",
+          "score": 5,
+          "explanation": "Long experience but no evidence of running jobs end to end rather than executing assigned work.",
+          "evidence": "\"Worked for a dozen different companies over the years\""
+        },
+        {
+          "categoryPriority": 2,
+          "categoryLabel": "Licensing & Technical Depth",
+          "score": 8,
+          "explanation": "20+ years licensed with broad experience - technical depth is not in question.",
+          "evidence": "\"Licensed plumber, 20+ years' experience\""
+        },
+        {
+          "categoryPriority": 3,
+          "categoryLabel": "Customer Communication",
+          "score": 3,
+          "explanation": "Explicitly avoids customer conversation - a direct conflict with a word-of-mouth business.",
+          "evidence": "\"I'm not one for chit-chat with customers\""
+        },
+        {
+          "categoryPriority": 4,
+          "categoryLabel": "Workmanship Standard",
+          "score": 6,
+          "explanation": "Self-reports good work but offers no references or specifics to back it up.",
+          "evidence": "\"I do good work\""
+        },
+        {
+          "categoryPriority": 5,
+          "categoryLabel": "Longevity & Fit",
+          "score": 4,
+          "explanation": "A dozen employers over the career is a clear flag against the crew's long-tenure culture.",
+          "evidence": "\"Worked for a dozen different companies over the years\""
+        }
+      ]
+    },
+    {
+      "id": "applicant-010",
+      "name": "Craig Dunmore",
+      "cvFileName": "craig-dunmore-cv.pdf",
+      "submittedDate": "Applied 6 days ago",
+      "status": "rejected",
+      "overallScore": 47,
+      "cvText": "Plumbing experience over the last few years, mostly labouring and assisting. Currently working towards my licence. Hard worker, reliable, looking for a full-time start.",
+      "scores": [
+        {
+          "categoryPriority": 1,
+          "categoryLabel": "Independent Job Ownership",
+          "score": 4,
+          "explanation": "Mostly labouring and assisting - no experience running jobs independently.",
+          "evidence": "\"Mostly labouring and assisting\""
+        },
+        {
+          "categoryPriority": 2,
+          "categoryLabel": "Licensing & Technical Depth",
+          "score": 5,
+          "explanation": "Still working towards a licence, which the role treats as a non-negotiable baseline.",
+          "evidence": "\"Currently working towards my licence\""
+        },
+        {
+          "categoryPriority": 3,
+          "categoryLabel": "Customer Communication",
+          "score": 5,
+          "explanation": "No customer-facing experience mentioned; nothing to assess either way.",
+          "evidence": "\"Mostly labouring and assisting\""
+        },
+        {
+          "categoryPriority": 4,
+          "categoryLabel": "Workmanship Standard",
+          "score": 4,
+          "explanation": "An assisting role gives little opportunity to demonstrate independent finish quality.",
+          "evidence": "\"Plumbing experience ... mostly labouring\""
+        },
+        {
+          "categoryPriority": 5,
+          "categoryLabel": "Longevity & Fit",
+          "score": 5,
+          "explanation": "States he's reliable and wants a full-time start, but there's no track record to confirm it.",
+          "evidence": "\"Hard worker, reliable, looking for a full-time start\""
+        }
+      ]
+    }
+  ]
+}

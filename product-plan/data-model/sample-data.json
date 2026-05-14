@@ -1,0 +1,72 @@
+{
+  "_note": "A small representative sample of the canonical data model. Each section folder ships its own richer sample-data.json shaped for that section's UI - use those for building and testing individual sections. This file is for getting a feel for the entities and their relationships.",
+  "accounts": [
+    {
+      "id": "account-001",
+      "businessName": "Patterson Plumbing",
+      "industry": "Plumbing",
+      "location": "Brisbane, QLD",
+      "phoneNumber": "07 3216 4480"
+    }
+  ],
+  "profiles": [
+    {
+      "id": "user-001",
+      "accountId": "account-001",
+      "fullName": "James Ryan",
+      "email": "james.ryan@pattersonplumbing.com.au",
+      "role": "client",
+      "status": "active"
+    }
+  ],
+  "hiringThreads": [
+    {
+      "id": "thread-001",
+      "accountId": "account-001",
+      "roleTitle": "Senior Plumber",
+      "currentPhase": 4,
+      "status": "ranking-in-progress"
+    }
+  ],
+  "scoringCategories": [
+    {
+      "id": "cat-001",
+      "threadId": "thread-001",
+      "priority": 1,
+      "label": "Independent Job Ownership",
+      "description": "Can run a residential or light commercial job from quote to completion without supervision.",
+      "priorityReason": "The role exists specifically to remove the ceiling created by only the owner being able to run jobs end to end."
+    }
+  ],
+  "applicants": [
+    {
+      "id": "applicant-001",
+      "threadId": "thread-001",
+      "name": "Darren Mitchell",
+      "cvFileName": "darren-mitchell-cv.pdf",
+      "cvText": "Licensed plumber and gasfitter with 14 years' experience across residential renovation, hot water, and leak detection.",
+      "overallScore": 91,
+      "status": "shortlisted"
+    }
+  ],
+  "applicantScores": [
+    {
+      "id": "score-001",
+      "applicantId": "applicant-001",
+      "scoringCategoryId": "cat-001",
+      "score": 9,
+      "explanation": "Ran his own service van and a team of two for six years with full quote-to-completion responsibility.",
+      "evidence": "\"Sole charge of all north-side service work, no supervision\""
+    }
+  ],
+  "aiProviderConfig": [
+    {
+      "id": "ai-config-001",
+      "phaseNumber": 1,
+      "phaseName": "Clarity of Role",
+      "providerId": "anthropic",
+      "modelId": "claude-sonnet-4-6",
+      "cost": "medium"
+    }
+  ]
+}

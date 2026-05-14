@@ -1,0 +1,364 @@
+{
+  "_meta": {
+    "models": {
+      "summary": "Platform-wide headline numbers shown on the Admin Dashboard.",
+      "activity": "A feed of recent events across the platform - signups, new threads, completed phases, and hires.",
+      "pendingApprovals": "People who have signed up and are waiting for an admin to approve their access.",
+      "accounts": "A client business on the platform, with its users and hiring threads.",
+      "aiProviders": "The catalogue of AI providers and models available to assign to each phase, each with a cost indicator.",
+      "aiConfig": "Which AI provider and model is currently assigned to each of the four phases."
+    },
+    "relationships": [
+      "Each Account has many Users (Profiles) and many Hiring Threads",
+      "A Pending Approval is a Profile awaiting admin approval before it becomes an active User",
+      "Each entry in aiConfig assigns one provider and model (from aiProviders) to one phase",
+      "Summary counts are aggregated across all Accounts, Threads, and Applicants on the platform",
+      "Activity events reference the Accounts and Threads they happened on"
+    ]
+  },
+  "summary": {
+    "totalClients": 38,
+    "activeThreads": 52,
+    "applicantsProcessed": 1284,
+    "pendingApprovals": 3
+  },
+  "activity": [
+    {
+      "id": "activity-001",
+      "type": "client-signed-up",
+      "message": "Walsh Carpentry signed up",
+      "timestamp": "2 hours ago"
+    },
+    {
+      "id": "activity-002",
+      "type": "applicant-shortlisted",
+      "message": "James Ryan shortlisted an applicant for Senior Plumber",
+      "timestamp": "4 hours ago"
+    },
+    {
+      "id": "activity-003",
+      "type": "phase-completed",
+      "message": "Lennox Eatery completed Phase 3 on Hospitality Manager",
+      "timestamp": "6 hours ago"
+    },
+    {
+      "id": "activity-004",
+      "type": "thread-created",
+      "message": "Sullivan Refrigeration started a thread for Refrigeration Mechanic",
+      "timestamp": "Yesterday"
+    },
+    {
+      "id": "activity-005",
+      "type": "user-approved",
+      "message": "You approved Renee Tran for Tran Electrical",
+      "timestamp": "Yesterday"
+    },
+    {
+      "id": "activity-006",
+      "type": "hire-closed",
+      "message": "Brisbane Coastal Builders closed the hire for Site Supervisor",
+      "timestamp": "2 days ago"
+    },
+    {
+      "id": "activity-007",
+      "type": "client-signed-up",
+      "message": "Korhonen Roofing signed up",
+      "timestamp": "3 days ago"
+    },
+    {
+      "id": "activity-008",
+      "type": "phase-completed",
+      "message": "Patterson Plumbing completed Phase 3 on Senior Plumber",
+      "timestamp": "4 days ago"
+    }
+  ],
+  "pendingApprovals": [
+    {
+      "id": "approval-001",
+      "name": "Connor Walsh",
+      "email": "connor@walshcarpentry.com.au",
+      "businessName": "Walsh Carpentry",
+      "requestedRole": "client",
+      "appliedDate": "Applied 2 hours ago"
+    },
+    {
+      "id": "approval-002",
+      "name": "Tom Patterson",
+      "email": "tom@pattersonplumbing.com.au",
+      "businessName": "Patterson Plumbing",
+      "requestedRole": "client",
+      "appliedDate": "Applied yesterday"
+    },
+    {
+      "id": "approval-003",
+      "name": "Dave Korhonen",
+      "email": "dave@korhonenroofing.com.au",
+      "businessName": "Korhonen Roofing",
+      "requestedRole": "client",
+      "appliedDate": "Applied 3 days ago"
+    }
+  ],
+  "accounts": [
+    {
+      "id": "account-001",
+      "businessName": "Patterson Plumbing",
+      "industry": "Plumbing",
+      "location": "Brisbane, QLD",
+      "phone": "07 3216 4480",
+      "status": "active",
+      "joinedDate": "Joined Jan 2026",
+      "users": [
+        {
+          "id": "user-001",
+          "name": "James Ryan",
+          "email": "james.ryan@pattersonplumbing.com.au",
+          "role": "client",
+          "status": "active"
+        },
+        {
+          "id": "user-002",
+          "name": "Megan Patterson",
+          "email": "megan@pattersonplumbing.com.au",
+          "role": "client",
+          "status": "active"
+        }
+      ],
+      "threads": [
+        {
+          "id": "thread-001",
+          "roleTitle": "Senior Plumber",
+          "currentPhase": 4,
+          "status": "ranking-in-progress"
+        },
+        {
+          "id": "thread-005",
+          "roleTitle": "Apprentice Plumber",
+          "currentPhase": 1,
+          "status": "setup-in-progress"
+        }
+      ]
+    },
+    {
+      "id": "account-002",
+      "businessName": "Brisbane Coastal Builders",
+      "industry": "Construction",
+      "location": "Gold Coast, QLD",
+      "phone": "07 5577 2910",
+      "status": "active",
+      "joinedDate": "Joined Nov 2025",
+      "users": [
+        {
+          "id": "user-003",
+          "name": "Anthony Falcone",
+          "email": "anthony@bccbuilders.com.au",
+          "role": "client",
+          "status": "active"
+        }
+      ],
+      "threads": [
+        {
+          "id": "thread-002",
+          "roleTitle": "Site Supervisor",
+          "currentPhase": 3,
+          "status": "waiting-for-applicants"
+        }
+      ]
+    },
+    {
+      "id": "account-003",
+      "businessName": "Sullivan Refrigeration",
+      "industry": "Refrigeration & HVAC",
+      "location": "Newcastle, NSW",
+      "phone": "02 4926 7340",
+      "status": "active",
+      "joinedDate": "Joined Feb 2026",
+      "users": [
+        {
+          "id": "user-004",
+          "name": "Grace Sullivan",
+          "email": "grace@sullivanrefrigeration.com.au",
+          "role": "client",
+          "status": "active"
+        },
+        {
+          "id": "user-005",
+          "name": "Pete Nguyen",
+          "email": "pete@sullivanrefrigeration.com.au",
+          "role": "client",
+          "status": "unverified"
+        }
+      ],
+      "threads": [
+        {
+          "id": "thread-003",
+          "roleTitle": "Refrigeration Mechanic",
+          "currentPhase": 2,
+          "status": "setup-in-progress"
+        }
+      ]
+    },
+    {
+      "id": "account-004",
+      "businessName": "Lennox Eatery",
+      "industry": "Hospitality",
+      "location": "Byron Bay, NSW",
+      "phone": "02 6685 1120",
+      "status": "active",
+      "joinedDate": "Joined Sep 2025",
+      "users": [
+        {
+          "id": "user-006",
+          "name": "Sofia Marchetti",
+          "email": "sofia@lennoxeatery.com.au",
+          "role": "client",
+          "status": "active"
+        }
+      ],
+      "threads": [
+        {
+          "id": "thread-004",
+          "roleTitle": "Hospitality Manager",
+          "currentPhase": 4,
+          "status": "shortlist-ready"
+        }
+      ]
+    },
+    {
+      "id": "account-005",
+      "businessName": "Northbridge Electrical",
+      "industry": "Electrical",
+      "location": "Sydney, NSW",
+      "phone": "02 9438 6605",
+      "status": "active",
+      "joinedDate": "Joined 3 days ago",
+      "users": [
+        {
+          "id": "user-007",
+          "name": "Daniel Osei",
+          "email": "daniel@northbridgeelectrical.com.au",
+          "role": "client",
+          "status": "active"
+        }
+      ],
+      "threads": []
+    },
+    {
+      "id": "account-006",
+      "businessName": "Hartley Landscaping",
+      "industry": "Landscaping",
+      "location": "Toowoomba, QLD",
+      "phone": "07 4632 8890",
+      "status": "inactive",
+      "joinedDate": "Joined Jul 2025",
+      "users": [
+        {
+          "id": "user-008",
+          "name": "Brian Hartley",
+          "email": "brian@hartleylandscaping.com.au",
+          "role": "client",
+          "status": "inactive"
+        }
+      ],
+      "threads": [
+        {
+          "id": "thread-006",
+          "roleTitle": "Landscape Labourer",
+          "currentPhase": 4,
+          "status": "hire-closed"
+        }
+      ]
+    },
+    {
+      "id": "account-007",
+      "businessName": "Coastal Dental Group",
+      "industry": "Healthcare",
+      "location": "Sunshine Coast, QLD",
+      "phone": "07 5443 1208",
+      "status": "active",
+      "joinedDate": "Joined Dec 2025",
+      "users": [
+        {
+          "id": "user-009",
+          "name": "Dr Amara Okafor",
+          "email": "amara@coastaldental.com.au",
+          "role": "client",
+          "status": "active"
+        },
+        {
+          "id": "user-010",
+          "name": "Holly Bremner",
+          "email": "holly@coastaldental.com.au",
+          "role": "client",
+          "status": "active"
+        }
+      ],
+      "threads": [
+        {
+          "id": "thread-007",
+          "roleTitle": "Dental Receptionist",
+          "currentPhase": 3,
+          "status": "waiting-for-applicants"
+        },
+        {
+          "id": "thread-008",
+          "roleTitle": "Dental Hygienist",
+          "currentPhase": 4,
+          "status": "shortlist-ready"
+        }
+      ]
+    }
+  ],
+  "aiProviders": [
+    {
+      "id": "anthropic",
+      "name": "Anthropic",
+      "models": [
+        { "id": "claude-opus-4-7", "name": "Claude Opus 4.7", "cost": "high" },
+        { "id": "claude-sonnet-4-6", "name": "Claude Sonnet 4.6", "cost": "medium" },
+        { "id": "claude-haiku-4-5", "name": "Claude Haiku 4.5", "cost": "low" }
+      ]
+    },
+    {
+      "id": "openai",
+      "name": "OpenAI",
+      "models": [
+        { "id": "gpt-5", "name": "GPT-5", "cost": "high" },
+        { "id": "gpt-5-mini", "name": "GPT-5 mini", "cost": "medium" }
+      ]
+    },
+    {
+      "id": "google",
+      "name": "Google",
+      "models": [
+        { "id": "gemini-2-5-pro", "name": "Gemini 2.5 Pro", "cost": "high" },
+        { "id": "gemini-2-5-flash", "name": "Gemini 2.5 Flash", "cost": "low" }
+      ]
+    }
+  ],
+  "aiConfig": [
+    {
+      "phaseNumber": 1,
+      "phaseName": "Clarity of Role",
+      "providerId": "anthropic",
+      "modelId": "claude-sonnet-4-6"
+    },
+    {
+      "phaseNumber": 2,
+      "phaseName": "Advertise for Role",
+      "providerId": "anthropic",
+      "modelId": "claude-opus-4-7"
+    },
+    {
+      "phaseNumber": 3,
+      "phaseName": "Role Outcomes",
+      "providerId": "anthropic",
+      "modelId": "claude-sonnet-4-6"
+    },
+    {
+      "phaseNumber": 4,
+      "phaseName": "Ranking",
+      "providerId": "openai",
+      "modelId": "gpt-5"
+    }
+  ]
+}

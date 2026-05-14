@@ -1,0 +1,29 @@
+/* Design Tokens for Ultimate Hiring Process */
+
+:root {
+  /* Colours - Tailwind palettes */
+  --color-primary: theme('colors.yellow.400'); /* #ffcd05-class accent */
+  --color-secondary: theme('colors.zinc.500');
+  --color-neutral: theme('colors.neutral.500');
+
+  /* Literal accent used throughout the components */
+  --accent: #ffcd05;
+  --accent-hover: #e6b800;
+  --accent-foreground: #0a0a0a;
+
+  /* Surface - dark mode first */
+  --surface-base: #0a0a0a;
+  --surface-raised: rgba(255, 255, 255, 0.05);
+  --surface-border: rgba(255, 255, 255, 0.1);
+
+  /* Status colours */
+  --status-amber: #ff8907;
+  --status-blue: #1a6ef4;
+  --status-green: #16a249;
+  --status-error: #dc2828;
+
+  /* Typography */
+  --font-heading: 'Inter', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
