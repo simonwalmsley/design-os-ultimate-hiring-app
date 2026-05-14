@@ -1,0 +1,267 @@
+{
+  "_meta": {
+    "models": {
+      "thread": "The hiring thread these phases belong to - one role being hired for one business.",
+      "phaseOne": "Phase 1, Clarity of Role - the conversation and the three artifacts that define who the business is and who they need to hire.",
+      "phaseTwo": "Phase 2, Advertise for Role - the conversation, the job logistics, and the seven-section job ad drafted from them.",
+      "phaseThree": "Phase 3, Role Outcomes - the conversation and the five ranked criteria used to assess applicants.",
+      "messages": "The chat history for a phase - the back-and-forth between the client and the AI, autosaved as it happens.",
+      "companyProfile": "The business identity drafted in Phase 1 - story, culture, and value proposition. Reused across every hire.",
+      "intentDocument": "The role definition from Phase 1 - what the role is, why it exists, and what success looks like.",
+      "personProfile": "The ideal candidate profile from Phase 1 - the traits, experience, and qualities of the right person.",
+      "jobAd": "The seven-section job ad from Phase 2, plus its fixed logistics. Section headings are locked; the content is editable.",
+      "scoringCategories": "The five priority-ranked criteria from Phase 3 that decide whether an applicant is a good fit."
+    },
+    "relationships": [
+      "Each Phase belongs to one Hiring Thread",
+      "Phase 1 produces a Company Profile, an Intent Document, and a Person Profile",
+      "Phase 2 produces one Job Ad, drafted from the role definition in Phase 1",
+      "Phase 3 produces five Scoring Categories, ranked by priority",
+      "Every Phase has its own Conversation Messages, kept separate per phase",
+      "A phase marked 'needs update' has stale output because an earlier phase changed"
+    ]
+  },
+  "thread": {
+    "id": "thread-001",
+    "roleTitle": "Senior Plumber",
+    "businessName": "Patterson Plumbing"
+  },
+  "phaseOne": {
+    "phaseNumber": 1,
+    "title": "Clarity of Role",
+    "description": "Work through who you are as a business and exactly who you need to hire.",
+    "status": "completed",
+    "lastGeneratedAt": "Generated 3 days ago",
+    "messages": [
+      {
+        "id": "p1-msg-01",
+        "role": "system",
+        "content": "Phase 1 started - Clarity of Role",
+        "timestamp": "Mon 9:01 am"
+      },
+      {
+        "id": "p1-msg-02",
+        "role": "assistant",
+        "content": "G'day. Before we write a single job ad, we need to get crystal clear on three things: who Patterson Plumbing is, what this role actually is, and who the right person looks like. Let's start with your business - in a sentence or two, what does Patterson Plumbing do and who do you do it for?",
+        "timestamp": "Mon 9:01 am"
+      },
+      {
+        "id": "p1-msg-03",
+        "role": "user",
+        "content": "We're a residential and light commercial plumbing business in Brisbane. Been going 18 years. Mostly repeat customers and word of mouth - renovations, hot water, leak detection, that sort of thing.",
+        "timestamp": "Mon 9:03 am"
+      },
+      {
+        "id": "p1-msg-04",
+        "role": "assistant",
+        "content": "Eighteen years on word of mouth says a lot about the quality of your work. What's it actually like to work at Patterson Plumbing day to day - the culture, the crew, how you treat people?",
+        "timestamp": "Mon 9:03 am"
+      },
+      {
+        "id": "p1-msg-05",
+        "role": "user",
+        "content": "Small tight crew, six on the tools. We don't do the cowboy thing - clean work, turn up when we say we will. The blokes have been with me years. I pay above award and I don't muck people around.",
+        "timestamp": "Mon 9:06 am"
+      },
+      {
+        "id": "p1-msg-06",
+        "role": "assistant",
+        "content": "Good. Now the role itself - you're hiring a Senior Plumber. Why does this position exist right now, and what would success look like 12 months in?",
+        "timestamp": "Mon 9:06 am"
+      },
+      {
+        "id": "p1-msg-07",
+        "role": "user",
+        "content": "We're turning work away. I need someone who can run their own jobs start to finish without me checking over their shoulder. Licensed, experienced, can talk to customers properly. In a year I want them leading a second crew.",
+        "timestamp": "Mon 9:09 am"
+      },
+      {
+        "id": "p1-msg-08",
+        "role": "assistant",
+        "content": "That's everything I need. I've drafted your Company Profile, Intent Document, and Person Profile - have a look on the right and tell me what to sharpen.",
+        "timestamp": "Mon 9:10 am"
+      }
+    ],
+    "companyProfile": {
+      "story": "Patterson Plumbing has served Brisbane's residential and light commercial market for 18 years, built almost entirely on repeat customers and word-of-mouth referrals. The business specialises in renovations, hot water systems, and leak detection - the kind of work that rewards precision and being trusted inside someone's home.",
+      "culture": "A small, tight-knit crew of six tradespeople who take pride in clean, reliable work. No shortcuts, no missed appointments. Long tenure across the team reflects an owner who pays above award and treats people straight.",
+      "valueProposition": "Customers choose Patterson Plumbing because the work is done properly the first time and the crew turns up when they say they will - a rare combination that has sustained the business without advertising for nearly two decades."
+    },
+    "intentDocument": {
+      "roleSummary": "A Senior Plumber who can independently run residential and light commercial jobs from quote to completion, without day-to-day oversight from the owner.",
+      "whyItExists": "The business is currently turning work away because there is no one besides the owner who can run jobs end to end. This role removes that ceiling on growth.",
+      "successLooksLike": "Within 12 months the Senior Plumber is running their own jobs unsupervised, handling customers confidently, and is positioned to lead a second crew - effectively doubling the business's capacity."
+    },
+    "personProfile": {
+      "traits": [
+        "Self-directed and accountable",
+        "Strong communicator with customers",
+        "Calm under pressure",
+        "Takes pride in clean, finished work"
+      ],
+      "experience": "A fully licensed plumber with at least 8 years on the tools, including significant time running jobs independently. Residential renovation and hot water experience is essential; light commercial exposure is a strong plus.",
+      "qualities": [
+        "Reliability customers and crew can count on",
+        "Mentorship instinct - able to lead others before long",
+        "Honest, straight-talking approach",
+        "Genuine care for the standard of the finished job"
+      ]
+    }
+  },
+  "phaseTwo": {
+    "phaseNumber": 2,
+    "title": "Advertise for Role",
+    "description": "Turn the role definition into a job ad that speaks to the right person first.",
+    "status": "needs-update",
+    "lastGeneratedAt": "Generated yesterday",
+    "regenerationNote": "You updated the Person Profile in Phase 1. Regenerate the job ad so it reflects the changes.",
+    "messages": [
+      {
+        "id": "p2-msg-01",
+        "role": "system",
+        "content": "Phase 2 started - Advertise for Role",
+        "timestamp": "Tue 2:14 pm"
+      },
+      {
+        "id": "p2-msg-02",
+        "role": "assistant",
+        "content": "Now we turn that role definition into an ad. The Ultimate Hiring ad runs from green brain to red brain - it opens with the dream and ends with the practical detail. Let's lock the practical detail first, because it never changes: where is the job based, and what are the hours?",
+        "timestamp": "Tue 2:14 pm"
+      },
+      {
+        "id": "p2-msg-03",
+        "role": "user",
+        "content": "Based out of our Geebung workshop, jobs all over the north side. Standard is 7 to 3:30, Monday to Friday. Occasional Saturday if a job runs over but that's rare.",
+        "timestamp": "Tue 2:17 pm"
+      },
+      {
+        "id": "p2-msg-04",
+        "role": "assistant",
+        "content": "Pay, and how you want people to apply?",
+        "timestamp": "Tue 2:17 pm"
+      },
+      {
+        "id": "p2-msg-05",
+        "role": "user",
+        "content": "$48 to $55 an hour depending on experience, plus a fully fitted ute. Apply by emailing me a CV - I'll call everyone worth calling within 48 hours.",
+        "timestamp": "Tue 2:20 pm"
+      },
+      {
+        "id": "p2-msg-06",
+        "role": "assistant",
+        "content": "Locked in. I've drafted the seven-section ad on the right - the headings are fixed but every word inside them is yours to change.",
+        "timestamp": "Tue 2:21 pm"
+      }
+    ],
+    "jobAd": {
+      "logistics": {
+        "location": "Geebung workshop, servicing Brisbane's north side",
+        "hours": "Monday to Friday, 7:00am - 3:30pm. Occasional Saturday by arrangement.",
+        "salary": "$48 - $55 per hour depending on experience, plus a fully fitted work ute",
+        "howToApply": "Email your CV directly to the owner",
+        "responseTimeframe": "Every applicant worth calling will hear back within 48 hours"
+      },
+      "sections": [
+        {
+          "heading": "The Opportunity",
+          "content": "There's a point where a good plumber stops wanting to be told what to do and starts wanting to run the show. If that's you, this is the job. You'll run your own residential and light commercial jobs across Brisbane's north side - quote to completion, your call, your standard."
+        },
+        {
+          "heading": "Why This Role Matters",
+          "content": "Patterson Plumbing is turning work away. Not because the work isn't there, but because there's only one person who can run a job end to end. You'd be the second. In twelve months, you could be leading a crew of your own."
+        },
+        {
+          "heading": "Who We're Looking For",
+          "content": "A fully licensed plumber with around eight years on the tools and real experience running jobs without someone checking over your shoulder. You talk to customers properly. You take pride in clean, finished work. You turn up when you say you will."
+        },
+        {
+          "heading": "What You'll Be Doing",
+          "content": "Running residential renovations, hot water installs, and leak detection jobs from first quote to final handover. Dealing with customers directly. Occasionally pulling in a second set of hands and showing them how it's done."
+        },
+        {
+          "heading": "What You'll Get",
+          "content": "$48 - $55 an hour depending on experience, a fully fitted work ute, and an owner who pays above award and doesn't muck people around. A small, long-tenured crew that does things properly. A clear path to leading your own crew."
+        },
+        {
+          "heading": "About Patterson Plumbing",
+          "content": "Eighteen years serving Brisbane on repeat customers and word of mouth - no advertising, just work done properly the first time. Six tradespeople who've been here for years. We don't do the cowboy thing."
+        },
+        {
+          "heading": "How to Apply",
+          "content": "Based out of our Geebung workshop, Monday to Friday, 7:00am - 3:30pm. Email your CV directly to the owner. Everyone worth calling hears back within 48 hours."
+        }
+      ]
+    }
+  },
+  "phaseThree": {
+    "phaseNumber": 3,
+    "title": "Role Outcomes",
+    "description": "Set the five things that actually decide whether a candidate is right.",
+    "status": "generated",
+    "lastGeneratedAt": "Generated 10 minutes ago",
+    "messages": [
+      {
+        "id": "p3-msg-01",
+        "role": "system",
+        "content": "Phase 3 started - Role Outcomes",
+        "timestamp": "Wed 11:32 am"
+      },
+      {
+        "id": "p3-msg-02",
+        "role": "assistant",
+        "content": "Last conversation before the applicants start coming in. We need the five things that actually decide whether someone is right for this role - ranked, because they're not equal. Think about the last great hire you made, or the one that went wrong. What separated them?",
+        "timestamp": "Wed 11:32 am"
+      },
+      {
+        "id": "p3-msg-03",
+        "role": "user",
+        "content": "The one that went wrong was technically fine but couldn't talk to customers, and I was always cleaning up jobs behind him. The good ones you just don't have to think about.",
+        "timestamp": "Wed 11:35 am"
+      },
+      {
+        "id": "p3-msg-04",
+        "role": "user",
+        "content": "So I'd say: can they actually run a job on their own, are they licensed and experienced enough, can they handle a customer, is the workmanship clean, and will they stick around.",
+        "timestamp": "Wed 11:37 am"
+      },
+      {
+        "id": "p3-msg-05",
+        "role": "assistant",
+        "content": "That maps to five clear criteria. I've ranked them by what your answers tell me matters most - reorder them on the right if your gut says different.",
+        "timestamp": "Wed 11:38 am"
+      }
+    ],
+    "scoringCategories": [
+      {
+        "priority": 1,
+        "label": "Independent Job Ownership",
+        "description": "Can run a residential or light commercial job from quote to completion without supervision.",
+        "priorityReason": "You said the last hire that failed couldn't be left alone, and the role exists specifically to remove that ceiling - this is the whole point of the position."
+      },
+      {
+        "priority": 2,
+        "label": "Licensing & Technical Depth",
+        "description": "Fully licensed with the years on the tools to handle renovations, hot water, and leak detection confidently.",
+        "priorityReason": "A non-negotiable baseline - without it nothing else matters - but ranked below ownership because plenty of licensed plumbers still can't run a job."
+      },
+      {
+        "priority": 3,
+        "label": "Customer Communication",
+        "description": "Can talk to customers properly, set expectations, and represent the business inside someone's home.",
+        "priorityReason": "You named this as exactly what went wrong with the hire that didn't work out, and your business runs on word of mouth."
+      },
+      {
+        "priority": 4,
+        "label": "Workmanship Standard",
+        "description": "Takes pride in clean, finished work that holds up and reflects the Patterson name.",
+        "priorityReason": "Central to your reputation, but ranked fourth because it tends to come bundled with technical depth and pride rather than being a separate gap."
+      },
+      {
+        "priority": 5,
+        "label": "Longevity & Fit",
+        "description": "Likely to stay and grow with the business rather than treating it as a stepping stone.",
+        "priorityReason": "Your crew's long tenure shows this matters to you, but it's the hardest to read from a CV and the easiest to develop once someone's in the right environment."
+      }
+    ]
+  }
+}

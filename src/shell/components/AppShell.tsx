@@ -111,7 +111,7 @@ export default function AppShell({
   const showSecondary = activeNav === 'Hiring Threads' && activeThread
 
   return (
-    <div className="h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-[#0a0a0a]">
       {/* Mobile sidebar */}
       <Dialog open={sidebarOpen} onClose={setSidebarOpen} className="relative z-50 lg:hidden">
         <DialogBackdrop
