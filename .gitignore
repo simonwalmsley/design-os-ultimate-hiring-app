@@ -22,3 +22,7 @@ dist/
 *.log
 npm-debug.log*
 .gstack/
+
+# local editor + planning artefacts
+.planning/
+.vscode/
