@@ -1,3 +1,7 @@
+## ARCHIVED - 6 September 2026
+
+Superseded for current work by upa-hiring-app-sw. This repository is unmaintained. Its source, history and local artefacts are preserved for reference; historical operating instructions are not current deployment guidance.
+
 <img width="1280" height="640" alt="Design OS" src="https://github.com/user-attachments/assets/a9c04258-7b9a-45b6-8475-3431cdf5dbe9" />
 
 ## The missing design process between your idea and your codebase.
